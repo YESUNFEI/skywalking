@@ -18,20 +18,19 @@
 
 package org.apache.skywalking.apm.toolkit.log.logback.v1.x;
 
-import ch.qos.logback.classic.PatternLayout;
+import ch.qos.logback.classic.pattern.ClassicConverter;
+import ch.qos.logback.classic.spi.ILoggingEvent;
 
-/**
- * Based on the logback-compoenent convert register mechanism, register {@link LogbackPatternConverter} as a new
- * convert, match to "tid". You can use "%tid" in logback config file, "Pattern" section.
- * <p>
- * Based on the logback-compoenent convert register mechanism, register {@link LogbackSpanIdPatternConverter} as a new
- * convert, match to "sid". You can use "%sid" in logback config file, "Pattern" section.
- * <p>
- */
-
-public class TraceIdPatternLogbackLayout extends PatternLayout {
-    static {
-        defaultConverterMap.put("tid", LogbackPatternConverter.class.getName());
-        defaultConverterMap.put("sid", LogbackSpanIdPatternConverter.class.getName());
+public class LogbackSpanIdPatternConverter extends ClassicConverter {
+    /**
+     * As default, return "SID: N/A" to the output message, if sky-walking agent in active mode, return the real spanId
+     * in the recent Context, if existed.
+     *
+     * @param iLoggingEvent the event
+     * @return the spanId: N/A, empty String, or the real spanId.
+     */
+    @Override
+    public String convert(ILoggingEvent iLoggingEvent) {
+        return "SID:N/A";
     }
 }

@@ -15,6 +15,7 @@
 # limitations under the License.
 
 toolkit-logback=org.apache.skywalking.apm.toolkit.activation.log.logback.v1.x.LogbackPatternConverterActivation
+toolkit-logback=org.apache.skywalking.apm.toolkit.activation.log.logback.v1.x.LogbackSpanIdPatternConverterActivation
 toolkit-logback=org.apache.skywalking.apm.toolkit.activation.log.logback.v1.x.mdc.MDCConverterActivation
 toolkit-logback=org.apache.skywalking.apm.toolkit.activation.log.logback.v1.x.async.AsyncAppenderBaseInstrumentation
 toolkit-logback=org.apache.skywalking.apm.toolkit.activation.log.logback.v1.x.async.LoggingEventInstrumentation

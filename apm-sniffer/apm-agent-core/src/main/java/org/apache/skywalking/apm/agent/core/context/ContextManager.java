@@ -79,6 +79,31 @@ public class ContextManager implements BootService {
         }
     }
 
+    /**
+     * @return the active span id if needEnhance. Otherwise, "N/A".
+     */
+    public static String getActiveSpanId() {
+        AbstractSpan activeSpan = get().activeSpan();
+        if (activeSpan == null) {
+            return "N/A";
+        } else {
+            System.out.print(activeSpan.getSpanId());
+            return String.valueOf(activeSpan.getSpanId());
+        }
+    }
+
+    /**
+     * @return the first global segment id if needEnhance. Otherwise, "N/A".
+     */
+    public static String getGlobalSegmentId() {
+        TraceSegment segment = new TraceSegment();
+        if (segment == null) {
+            return "N/A";
+        } else {
+            return segment.getTraceSegmentId();
+        }
+    }
+
     public static AbstractSpan createEntrySpan(String operationName, ContextCarrier carrier) {
         AbstractSpan span;
         AbstractTracerContext context;
